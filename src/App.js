@@ -1,40 +1,35 @@
+/* eslint-disable react/no-deprecated */
+/* eslint-disable react/state-in-constructor */
 import React from 'react';
 
 class App extends React.Component {
   state = {
-    employees: []
-  }
-  
+    employees: [],
+  };
+
   componentWillMount = () => {
     fetch('http://localhost:8080/api/employees')
       .then(response => response.json())
-      .then(employees => this.setState({ employees }))
-  }
+      .then(employees => this.setState({ employees }));
+  };
 
   render() {
-    const {
-      employees
-    } = this.state;
+    const { employees } = this.state;
 
     console.log(this.state);
 
     return (
       <div className="App">
         <h1>Plexxis Employees</h1>
-        {
-          employees.map(employee => (
-            <div key={employee.id}>
-              {
-                Object.keys(employee).map(key => 
-                  <span key={key}>
-                    { key }:
-                    { employee[key] } 
-                  </span>
-                )
-              }
-            </div>
-          ))
-        }
+        {employees.map(employee => (
+          <div key={employee.id}>
+            {Object.keys(employee).map(key => (
+              <span key={key}>
+                {key}:{employee[key]}
+              </span>
+            ))}
+          </div>
+        ))}
       </div>
     );
   }
