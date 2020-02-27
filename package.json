@@ -1,0 +1,24 @@
+{
+  "name": "plex-employees",
+  "version": "0.1.0",
+  "license": "None provided",
+  "private": true,
+  "dependencies": {
+    "concurrently": "^3.6.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "nodemon": "^1.17.5",
+    "react": "^16.4.1",
+    "react-dom": "^16.4.1",
+    "react-scripts": "1.1.4"
+  },
+  "scripts": {
+    "start": "concurrently --kill-others \"node server\" \"npm run start:react-app\"",
+    "start:react-app": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject",
+    "custom:build": "nodemon src/scripts/build.js --watch src/data --ext .md",
+    "custom:start": "concurrently --kill-others \"npm run custom:build\" \"npm run start\""
+  }
+}
