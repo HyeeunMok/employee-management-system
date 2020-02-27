@@ -1,38 +1,31 @@
-/* eslint-disable react/no-deprecated */
-/* eslint-disable react/state-in-constructor */
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { fetchEmployeesAPI } from './api/FetchAPI';
 
-class App extends React.Component {
-  state = {
+const App = () => {
+  const [state, setState] = useState({
     employees: [],
-  };
+  });
 
-  componentWillMount = () => {
-    fetch('http://localhost:8080/api/employees')
-      .then(response => response.json())
-      .then(employees => this.setState({ employees }));
-  };
+  useEffect(() => {
+    fetchEmployeesAPI(setState);
+  }, []);
 
-  render() {
-    const { employees } = this.state;
+  const { employees } = state;
 
-    console.log(this.state);
-
-    return (
-      <div className="App">
-        <h1>Plexxis Employees</h1>
-        {employees.map(employee => (
-          <div key={employee.id}>
-            {Object.keys(employee).map(key => (
-              <span key={key}>
-                {key}:{employee[key]}
-              </span>
-            ))}
-          </div>
-        ))}
-      </div>
-    );
-  }
-}
+  return (
+    <div>
+      <h1>Employees List</h1>
+      {employees.map(employee => (
+        <div key={employee.id}>
+          {Object.keys(employee).map(key => (
+            <span key={key}>
+              {key}:{employee[key]}
+            </span>
+          ))}
+        </div>
+      ))}
+    </div>
+  );
+};
 
 export default App;
