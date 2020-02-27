@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const searchBar = () => {
+const searchBar = ({ filterHandler, filterValue }) => {
   return (
     <Wrapper>
       <Input
@@ -12,6 +12,8 @@ const searchBar = () => {
         required
         size="30"
         placeholder="Search by employee's name..."
+        onChange={filterHandler}
+        value={filterValue}
       />
     </Wrapper>
   );
