@@ -9,6 +9,7 @@ import './App.css';
 import NavBar from './components/UI/NavBar/NavBar';
 import SearchBar from './components/UI/SearchBar/SearchBar';
 import Spinner from './components/UI/Spinner/Spinner';
+import UserDashboard from './user/UserDashboard/UserDashboard';
 
 const url = 'http://localhost:8080/api/employees';
 class App extends React.Component {
@@ -62,19 +63,11 @@ class App extends React.Component {
           filterHandler={this.filterHandler.bind(this)}
           value={filterValue}
         />
-        <Spinner />
         <div className="app">
           <h1>Employees List</h1>
-          {filteredEmployees.map(employee => (
-            <div key={employee.id}>
-              {Object.keys(employee).map(key => (
-                <span key={key}>
-                  {key}:{employee[key]}
-                </span>
-              ))}
-            </div>
-          ))}
+          <UserDashboard filteredEmployees={filteredEmployees} />
         </div>
+        <Spinner />
       </div>
     );
   }
