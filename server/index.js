@@ -1,5 +1,4 @@
 /* eslint-disable consistent-return */
-/* eslint-disable no-unused-vars */
 const express = require('express');
 const cors = require('cors');
 
@@ -17,6 +16,20 @@ const corsOptions = {
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
+  res.setHeader(
+    'Access-Control-Allow-Methods',
+    'GET, POST, OPTIONS, PUT, PATCH, DELETE',
+  );
+  res.setHeader(
+    'Access-Control-Allow-Headers',
+    'Origin, X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept',
+  );
+  res.setHeader('Access-Control-Allow-Credentials', true);
+  next();
+});
+
 // ROOT ENDPOINT
 app.get('/', (req, res, next) => {
   res.json({ message: 'Ok' });
@@ -26,28 +39,36 @@ app.get('/', (req, res, next) => {
 
 app.get('/api/employees', cors(corsOptions), (req, res, next) => {
   const query = 'SELECT * FROM employees;';
-  return db.all(query, (err, employees) => {
+  const params = [];
+  return db.all(query, params, (err, rows) => {
     if (err) {
-      return res.status(400).json({ status: 'bad', error: err });
+      res.status(400).json({ error: err.message });
+      return;
     }
-    res.setHeader('Content-Type', 'application/json');
     res.status(200);
-    res.send(JSON.stringify(employees, null, 2));
+    res.json({
+      message: 'success',
+      data: rows,
+    });
   });
 });
 
 // GET ONE EMPLOYEE BY ID
 
 app.get('/api/employees/:id', cors(corsOptions), (req, res, next) => {
-  // const query = `SELECT * FROM employees WHERE id =${id};`
   const query = `SELECT * FROM employees WHERE id = ?;`;
-  return db.each(query, req.params.id, function(err, employees) {
+  const params = [req.params.id];
+  return db.each(query, params, (err, row) => {
     if (err) {
-      return res.status(400).json({ status: 'bad', error: err });
+      res.status(400).json({ status: 'bad', error: err });
+      return;
     }
-    res.setHeader('Content-Type', 'application/json');
+    // res.setHeader("Content-Type", "application/json");
     res.status(200);
-    res.send(JSON.stringify(employees, null, 2));
+    res.json({
+      message: 'success',
+      data: row,
+    });
   });
 });
 
@@ -97,17 +118,22 @@ app.post('/api/add/employees', cors(corsOptions), (req, res, next) => {
     data.assigned,
   ];
 
-  return db.run(query, params, function(err, employees) {
+  return db.run(query, params, function(err, result) {
     if (err) {
-      return res.status(400).json({ status: 'bad', error: err });
+      res.status(400).json({ status: 'bad', error: err });
+      return;
     }
-    res.setHeader('Content-Type', 'application/json');
+    // res.setHeader("Content-Type", "application/json");
     res.status(200);
-    res.send(JSON.stringify(employees, null, 2));
+    res.json({
+      message: 'success',
+      data: data,
+      id: this.lastID,
+    });
   });
 });
 
-// EDIT EMPLOYEE
+// EDIT EMPLOYEE by ID
 app.patch(
   '/api/edit/employees/:id',
   cors(corsOptions),
@@ -143,13 +169,18 @@ app.patch(
       req.params.id,
     ];
 
-    return db.run(query, params, function(err, employees) {
+    return db.run(query, params, function(err, result) {
       if (err) {
-        return res.status(400).json({ status: 'bad', error: err });
+        res.status(400).json({ status: 'bad', error: err });
+        return;
       }
-      res.setHeader('Content-Type', 'application/json');
+      // res.setHeader("Content-Type", "application/json");
       res.status(200);
-      res.send(JSON.stringify(employees, null, 2));
+      res.json({
+        message: 'success',
+        data: data,
+        changes: this.changes,
+      });
     });
   },
 );
@@ -157,13 +188,13 @@ app.patch(
 // DELETE ONE EMPLOYEE BY ID
 app.delete('/api/employees/:id', cors(corsOptions), (req, res, next) => {
   const query = `DELETE FROM employees WHERE id = ?;`;
-  return db.run(query, req.params.id, function(err, employees) {
+  return db.run(query, req.params.id, (err, row) => {
     if (err) {
       return res.status(400).json({ status: 'bad', error: err });
     }
-    res.setHeader('Content-Type', 'application/json');
+    // res.setHeader("Content-Type", "application/json");
     res.status(200);
-    res.send(JSON.stringify(employees, null, 2));
+    res.json({ message: 'deleted', changes: this.changes });
   });
 });
 

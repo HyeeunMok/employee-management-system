@@ -23,6 +23,7 @@ db.all(tableCheckQuery, function(err, rows) {
   if (!rows.length) {
     db.run(createTableQuery);
     console.log("'Employees' table is Successfully created.");
+    // }
   } else {
     // This is for testing
     db.run(insertQuery, [
