@@ -36,7 +36,7 @@ const branches = [
   'King',
 ];
 
-function AddForm(props) {
+function AddForm() {
   const [employee, setEmployee] = useState({
     name: '',
     profession: '',
