@@ -2,6 +2,7 @@ import React from 'react';
 import ReactTable from 'react-table';
 import Button from 'react-bootstrap/Button';
 import 'react-table/react-table.css';
+import styled from 'styled-components';
 
 const TableTemplate = ({
   filteredEmployees,
@@ -35,14 +36,13 @@ const TableTemplate = ({
                   >
                     Edit
                   </Button>
-                  <Button
-                    className="style-button"
+                  <StyledButton
                     variant="danger"
                     size="sm"
                     onClick={() => deleteEmployee(row.id)}
                   >
                     Delete
-                  </Button>
+                  </StyledButton>
                 </div>
               );
             },
@@ -67,5 +67,9 @@ const TableTemplate = ({
     />
   );
 };
+
+const StyledButton = styled(Button)`
+  margin-left: 5px;
+`;
 
 export default TableTemplate;

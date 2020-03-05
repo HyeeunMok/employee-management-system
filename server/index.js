@@ -36,7 +36,6 @@ app.get('/', (req, res, next) => {
 });
 
 // GET ALL EMPLOYEES
-
 app.get('/api/employees', cors(corsOptions), (req, res, next) => {
   const query = 'SELECT * FROM employees;';
   const params = [];
@@ -54,7 +53,6 @@ app.get('/api/employees', cors(corsOptions), (req, res, next) => {
 });
 
 // GET ONE EMPLOYEE BY ID
-
 app.get('/api/employees/:id', cors(corsOptions), (req, res, next) => {
   const query = `SELECT * FROM employees WHERE id = ?;`;
   const params = [req.params.id];
@@ -63,7 +61,6 @@ app.get('/api/employees/:id', cors(corsOptions), (req, res, next) => {
       res.status(400).json({ status: 'bad', error: err });
       return;
     }
-    // res.setHeader("Content-Type", "application/json");
     res.status(200);
     res.json({
       message: 'success',
@@ -73,7 +70,6 @@ app.get('/api/employees/:id', cors(corsOptions), (req, res, next) => {
 });
 
 // CREATE NEW EMPLOYEE
-
 app.post('/api/add/employees', cors(corsOptions), (req, res, next) => {
   const data = req.body;
   const errors = [];
@@ -123,7 +119,6 @@ app.post('/api/add/employees', cors(corsOptions), (req, res, next) => {
       res.status(400).json({ status: 'bad', error: err });
       return;
     }
-    // res.setHeader("Content-Type", "application/json");
     res.status(200);
     res.json({
       message: 'success',
@@ -174,7 +169,6 @@ app.patch(
         res.status(400).json({ status: 'bad', error: err });
         return;
       }
-      // res.setHeader("Content-Type", "application/json");
       res.status(200);
       res.json({
         message: 'success',
@@ -192,7 +186,6 @@ app.delete('/api/employees/:id', cors(corsOptions), (req, res, next) => {
     if (err) {
       return res.status(400).json({ status: 'bad', error: err });
     }
-    // res.setHeader("Content-Type", "application/json");
     res.status(200);
     res.json({ message: 'deleted', changes: this.changes });
   });

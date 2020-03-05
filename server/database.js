@@ -12,7 +12,7 @@ const createTableQuery = `CREATE TABLE IF NOT EXISTS employees(
   city VARCHAR(255) NOT NULL, 
   branch VARCHAR(255) NOT NULL, 
   assigned BOOLEAN DEFAULT NULL);`;
-const insertQuery = `INSERT INTO employees (name, code, profession, color, city, branch, assigned) VALUES (?,?,?,?,?,?,?);`;
+// const insertQuery = `INSERT INTO employees (name, code, profession, color, city, branch, assigned) VALUES (?,?,?,?,?,?,?);`;
 
 db.all(tableCheckQuery, function(err, rows) {
   if (err) {
@@ -25,16 +25,16 @@ db.all(tableCheckQuery, function(err, rows) {
     console.log("'Employees' table is Successfully created.");
     // }
   } else {
-    // This is for testing
-    db.run(insertQuery, [
-      'Hyeeun',
-      'F300',
-      'Full Stack Developer',
-      'yellow',
-      'Toronto',
-      'High Park',
-      true,
-    ]);
+    // ---- This is for testing ---- //
+    // db.run(insertQuery, [
+    //   'Hyeeun',
+    //   'F300',
+    //   'Full Stack Developer',
+    //   'Yellow',
+    //   'Toronto',
+    //   'High Park',
+    //   false,
+    // ]);
   }
 });
 

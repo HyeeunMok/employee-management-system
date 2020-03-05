@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 const navBar = ({ title, user }) => (
   <Navbar bg="dark" variant="dark">
-    <StyledNavbarBrand href="#dashboard">
+    <StyledNavbarBrand href="/">
       <img
         alt=""
         src="assets/plexxis_logo.png"

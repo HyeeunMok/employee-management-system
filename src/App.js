@@ -1,6 +1,5 @@
 import React from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-import './App.css';
 import NavBar from './components/UI/NavBar/NavBar';
 import UserDashboard from './user/UserDashboard/UserDashboard';
 import EditForm from './user/Forms/EditForm';

@@ -19,7 +19,6 @@ class UserDashboard extends React.Component {
     filterValue: '',
     filterEmployees: [],
     errorMessage: '',
-    // showAddForm: false,
   };
 
   componentDidMount = () => {
@@ -47,9 +46,9 @@ class UserDashboard extends React.Component {
     this.props.history.replace(`/edit/${id}`);
   };
 
-  // openAddFormHandler = () => {
-  //   this.setState({ showAddForm: true })
-  // };
+  openAddFormHandler = () => {
+    window.location.href = '/add';
+  };
 
   changeHandler = prop => this.setState({ [prop.name]: prop.value });
 
@@ -68,7 +67,11 @@ class UserDashboard extends React.Component {
         <Container>
           <Row>
             <Col xs={5} sm={5}>
-              <Button variant="primary" size="sm">
+              <Button
+                variant="primary"
+                size="sm"
+                onClick={this.openAddFormHandler.bind(this)}
+              >
                 Add Employee
               </Button>
             </Col>

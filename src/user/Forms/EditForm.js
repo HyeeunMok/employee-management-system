@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Row, Col, Form, Card, Button } from 'react-bootstrap';
+import { Row, Col, Form, Container, Card, Button } from 'react-bootstrap';
+import styled from 'styled-components';
 import axios from 'axios';
 import { closeForm } from '../../utils/CloseForm';
 
@@ -7,6 +8,7 @@ const url = 'http://localhost:8080/api/employees';
 const editUrl = 'http://localhost:8080/api/edit/employees';
 
 const colors = [
+  '',
   'White',
   'Yellow',
   'Orange',
@@ -18,6 +20,7 @@ const colors = [
   'Black',
 ];
 const cities = [
+  '',
   'Brampton',
   'Bolton',
   'Toronto',
@@ -26,7 +29,7 @@ const cities = [
   'Makham',
   'Ottawa',
 ];
-const branches = ['Abacus', 'Pillsworth', 'Dundas', 'Queen', 'King'];
+const branches = ['', 'Abacus', 'Pillsworth', 'Dundas', 'Queen', 'King'];
 
 function EditForm(props) {
   const [employee, setEmployee] = useState({
@@ -106,107 +109,121 @@ function EditForm(props) {
   };
 
   return (
-    <div>
-      <Row className="justify-content-md-center">
-        <Col xs={12} sm={7}>
-          <Card>
-            <Card.Header>Edit Employee</Card.Header>
-            <Card.Body>
-              <Form>
-                <Form.Group controlId="formName">
-                  <Form.Label>Name</Form.Label>
-                  <Form.Control
-                    required
-                    name="name"
-                    placeholder="Please enter full name"
-                    value={employee.name}
-                    onChange={onChangeName}
-                  />
-                </Form.Group>
-                <Form.Group controlId="formProfession">
-                  <Form.Label>Profession</Form.Label>
-                  <Form.Control
-                    required
-                    name="profession"
-                    placeholder="Please enter job title"
-                    value={employee.profession}
-                    onChange={onChangeProfession}
-                  />
-                </Form.Group>
-                <Form.Group controlId="formColor">
-                  <Form.Label>Color</Form.Label>
-                  <Form.Control
-                    required
-                    name="color"
-                    as="select"
-                    value={employee.color}
-                    onChange={onChangeColor}
+    <Wrapper>
+      <Container>
+        <Row className="justify-content-md-center">
+          <Col xs={12} sm={9}>
+            <H6>
+              Please change information to update the details and click the
+              submit button to complete.
+            </H6>
+          </Col>
+        </Row>
+        <Row className="justify-content-md-center">
+          <Col xs={12} sm={9}>
+            <Card>
+              <StyledCardHeader>Edit Employee</StyledCardHeader>
+              <Card.Body>
+                <Form>
+                  <Form.Group controlId="formName">
+                    <Form.Label>Name</Form.Label>
+                    <Form.Control
+                      required
+                      name="name"
+                      placeholder="Please enter full name"
+                      value={employee.name}
+                      onChange={onChangeName}
+                    />
+                  </Form.Group>
+                  <Form.Group controlId="formProfession">
+                    <Form.Label>Profession</Form.Label>
+                    <Form.Control
+                      required
+                      name="profession"
+                      placeholder="Please enter job title"
+                      value={employee.profession}
+                      onChange={onChangeProfession}
+                    />
+                  </Form.Group>
+                  <Form.Group controlId="formColor">
+                    <Form.Label>Color</Form.Label>
+                    <Form.Control
+                      required
+                      name="color"
+                      as="select"
+                      value={employee.color}
+                      onChange={onChangeColor}
+                    >
+                      {colors.map(color => (
+                        <option key={color}>{color}</option>
+                      ))}
+                    </Form.Control>
+                  </Form.Group>
+                  <Form.Group controlId="formCity">
+                    <Form.Label>City</Form.Label>
+                    <Form.Control
+                      required
+                      name="city"
+                      as="select"
+                      value={employee.city}
+                      onChange={onChangeCity}
+                    >
+                      {cities.map(city => (
+                        <option key={city}>{city}</option>
+                      ))}
+                    </Form.Control>
+                  </Form.Group>
+                  <Form.Group controlId="formBranch">
+                    <Form.Label>Branch</Form.Label>
+                    <Form.Control
+                      required
+                      name="branch"
+                      as="select"
+                      value={employee.branch}
+                      onChange={onChangeBranch}
+                    >
+                      {branches.map(branch => (
+                        <option key={branch}>{branch}</option>
+                      ))}
+                    </Form.Control>
+                  </Form.Group>
+                  <Button
+                    variant="danger"
+                    size="sm"
+                    onClick={() => closeForm()}
                   >
-                    <option disabled selected>
-                      Please choose color
-                    </option>
-                    {colors.map(color => (
-                      <option key={color}>{color}</option>
-                    ))}
-                  </Form.Control>
-                </Form.Group>
-                <Form.Group controlId="formCity">
-                  <Form.Label>City</Form.Label>
-                  <Form.Control
-                    required
-                    name="city"
-                    as="select"
-                    value={employee.city}
-                    onChange={onChangeCity}
-                  >
-                    <option disabled selected>
-                      Please choose city
-                    </option>
-                    {cities.map(city => (
-                      <option key={city}>{city}</option>
-                    ))}
-                  </Form.Control>
-                </Form.Group>
-                <Form.Group controlId="formBranch">
-                  <Form.Label>Branch</Form.Label>
-                  <Form.Control
-                    required
-                    name="branch"
-                    as="select"
-                    value={employee.branch}
-                    onChange={onChangeBranch}
-                  >
-                    <option disabled selected>
-                      Please choose branch
-                    </option>
-                    {branches.map(branch => (
-                      <option key={branch}>{branch}</option>
-                    ))}
-                  </Form.Control>
-                </Form.Group>
-                <Button
-                  className="style-button"
-                  variant="danger"
-                  size="sm"
-                  onClick={() => closeForm()}
-                >
-                  Cancel
-                </Button>
-                <Button
-                  className="style-button"
-                  variant="success"
-                  size="sm"
-                  onClick={() => onClickSubmit()}
-                >
-                  Submit
-                </Button>
-              </Form>
-            </Card.Body>
-          </Card>
-        </Col>
-      </Row>
-    </div>
+                    Cancel
+                  </Button>
+                  <StyledButton size="sm" onClick={() => onClickSubmit()}>
+                    Submit
+                  </StyledButton>
+                </Form>
+              </Card.Body>
+            </Card>
+          </Col>
+        </Row>
+      </Container>
+    </Wrapper>
   );
 }
+
+const Wrapper = styled.div`
+  margin-top: 50px;
+`;
+
+const H6 = styled.h6`
+  margin-bottom: 10px;
+  color: #858484;
+`;
+
+const StyledCardHeader = styled(Card.Header)`
+  background-color: #eea33b;
+  color: #ffffff;
+  font-weight: bold;
+`;
+
+const StyledButton = styled(Button)`
+  margin-left: 5px;
+`;
 
 export default EditForm;
