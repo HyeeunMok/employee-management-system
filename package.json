@@ -5,6 +5,7 @@
   "license": "None provided",
   "private": true,
   "dependencies": {
+    "axios": "^0.19.2",
     "body-parser": "^1.19.0",
     "concurrently": "^3.6.0",
     "cors": "^2.8.5",
@@ -13,6 +14,7 @@
     "react": "^16.4.1",
     "react-bootstrap": "^1.0.0-beta.16",
     "react-dom": "^16.4.1",
+    "react-router-dom": "^5.1.2",
     "react-scripts": "1.1.4",
     "react-table": "^6.10.0",
     "sqlite3": "^4.1.1",

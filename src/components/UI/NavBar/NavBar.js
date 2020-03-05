@@ -1,5 +1,5 @@
 import React from 'react';
-import Navbar from 'react-bootstrap/Navbar';
+import { Navbar, Nav } from 'react-bootstrap';
 import styled from 'styled-components';
 
 const navBar = ({ title, user }) => (
@@ -14,6 +14,10 @@ const navBar = ({ title, user }) => (
       />{' '}
       {title}
     </StyledNavbarBrand>
+    <Nav className="mr-auto">
+      <Nav.Link href="/">Dashboard</Nav.Link>
+      <Nav.Link href="/add">Add Employee</Nav.Link>
+    </Nav>
     <Navbar.Collapse className="justify-content-end">
       <StyledNavbarText>
         Signed in as: <a href="#login">{user}</a>

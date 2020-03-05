@@ -1,13 +1,17 @@
-/* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 import ReactTable from 'react-table';
 import Button from 'react-bootstrap/Button';
 import 'react-table/react-table.css';
 
-const TableTemplate = ({ filteredEmployees }) => {
+const TableTemplate = ({
+  filteredEmployees,
+  openEditForm,
+  deleteEmployee,
+}) => {
   const columns = React.useMemo(
     () => [
       {
+        // Code and Assigned will be shown in Admin page which will be implement in the future
         columns: [
           { Header: 'ID', accessor: 'id', minWidth: 50, maxWidth: 60 },
           { Header: 'Name', accessor: 'name' },
@@ -27,19 +31,15 @@ const TableTemplate = ({ filteredEmployees }) => {
                   <Button
                     variant="warning"
                     size="sm"
-                    onClick={() => {
-                      console.log(`Edit button is clicked for : ${row}`);
-                    }}
+                    onClick={() => openEditForm(row.id)}
                   >
                     Edit
                   </Button>
                   <Button
-                    className="delete-button"
+                    className="style-button"
                     variant="danger"
                     size="sm"
-                    onClick={() => {
-                      console.log(`Delete button is clicked for : ${row}`);
-                    }}
+                    onClick={() => deleteEmployee(row.id)}
                   >
                     Delete
                   </Button>
@@ -58,6 +58,12 @@ const TableTemplate = ({ filteredEmployees }) => {
       className="-striped -highlight"
       data={filteredEmployees}
       columns={columns}
+      defaultPageSize={10}
+      style={{
+        borderColor: '#a5a4a4',
+        borderRadius: '5px',
+        borderStyle: 'outset',
+      }}
     />
   );
 };
