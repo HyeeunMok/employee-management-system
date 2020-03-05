@@ -1,35 +1,50 @@
-# Plexxis Interview Exercise
+# Employee Management System (Plexxis Interview Exercise)
 
 ![ERP](ERP.gif)
 
 
-## Requirements
-Create a simple but __impressive__ (looks good, works well, has intuitive design, etc.) CRUD application that can do the following:
+## Overview
+An employee management system consisting of crucial work-related and important personal information about employees. Human Resources (HR) can manage their employees efficiently using this web application.
 
-1) Retrieve employees from a REST API  
-2) Display the employees in a React application  
-3) Has UI mechanisms for creating and deleting employees  
-4) Has API endpoints for creating and deleting employees  
-5) Edit your version of the `README.md` file to explain to us what things you did, where you focussed your effort, etc.
+## Purpose
+I created an online employee management system web application that will allow users can add, edit, update, search and delete employees. It will also allow Admin update code and assigned sections using an Admin dashboard (Admin page will be implemented in the future).
 
-*Read over the `Bonus` objectives and consider tackling those items as well*
+## Functionalities:
 
-## Bonus (Highly Encouraged)
+**1. Add employee information:**
+&nbsp; &nbsp; * Name <br />
+&nbsp; &nbsp; * Profession <br />
+&nbsp; &nbsp; * Color <br />
+&nbsp; &nbsp; * City <br />
+&nbsp; &nbsp; * Branch <br />
 
-1) Use a relational database to store the data (SQLite, MariaDB, Postgres)  
-2) UI mechanisms to edit/update employee data  
-3) Add API endpoint to update employee data  
-4) Use [React Table](https://react-table.js.org)  
+**2. Edit and Delete:**
+ Be able to edit and delete employees from the database. An employee's details are automatically populated when the user clicks the edit button
 
-## Getting Started
-This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app). The front-end app runs off localhost:3000. The REST API is located in the /server folder and runs off localhost:8080. The data is being served from a JSON file located in the /server/data folder. Run `npm start` to start both servers.
+**3. Search:**
+ Be able to search (an) employee(s) by their first name, last name, and full name
 
-## Getting it Done
-* You are free to use whatever libraries that you want. Be prepared to defend your decisions.
-* There is no time limit. Use as little or as much time as is necessary to showcase your abilities.
-* You should fork or clone our repository into your own repository.
-  * Send us the link when you are done the exercise (pglinker at plexxis dot com).
+**4. Display employees:**
+ Be able to retrieve employees from a REST API and display them
 
-If you do well on the test, we will bring you in for an interview. Your test results will be used as talking points.  
+## Used technologies:
+&nbsp; &nbsp; * React <br />
+&nbsp; &nbsp; * Node.js <br />
+&nbsp; &nbsp; * Express <br />
+&nbsp; &nbsp; * SQLite <br />
+&nbsp; &nbsp; * REST API <br />
+&nbsp; &nbsp; * React Table <br />
+&nbsp; &nbsp; * React-Bootstrap <br />
+&nbsp; &nbsp; * Axios <br />
+&nbsp; &nbsp; * Cors <br />
+&nbsp; &nbsp; * Nodemon <br />
+&nbsp; &nbsp; * Styled-components <br />
+&nbsp; &nbsp; * ESLint <br />
+&nbsp; &nbsp; * Prettier <br />
 
- __This is your chance to amaze us with your talent!__
+## How to run:
+
+&nbsp; &nbsp; 1. npm install <br />
+&nbsp; &nbsp; 2. npm start <br /><br />
+
+The front-end app runs on localhost:3000. The REST API is located in the /server folder and runs on localhost:8080. The data is being served by index.js located n the /server/index.js and actual data from a plexxis.db is located in the /server/repo folder (if it does not exist, it will be created when the application is run for the first time). Run "npm start" to start both servers.
