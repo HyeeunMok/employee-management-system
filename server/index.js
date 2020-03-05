@@ -70,6 +70,8 @@ app.get('/api/employees/:id', cors(corsOptions), (req, res, next) => {
 });
 
 // CREATE NEW EMPLOYEE
+// For code and assigned, they will be updated by admin on admin page in the future
+// Code has a pattern, so logic for it will be added here in the future
 app.post('/api/add/employees', cors(corsOptions), (req, res, next) => {
   const data = req.body;
   const errors = [];

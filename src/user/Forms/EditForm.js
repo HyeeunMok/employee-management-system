@@ -8,7 +8,6 @@ const url = 'http://localhost:8080/api/employees';
 const editUrl = 'http://localhost:8080/api/edit/employees';
 
 const colors = [
-  '',
   'White',
   'Yellow',
   'Orange',
@@ -20,7 +19,6 @@ const colors = [
   'Black',
 ];
 const cities = [
-  '',
   'Brampton',
   'Bolton',
   'Toronto',
@@ -29,7 +27,7 @@ const cities = [
   'Makham',
   'Ottawa',
 ];
-const branches = ['', 'Abacus', 'Pillsworth', 'Dundas', 'Queen', 'King'];
+const branches = ['Abacus', 'Pillsworth', 'Dundas', 'Queen', 'King'];
 
 function EditForm(props) {
   const [employee, setEmployee] = useState({
@@ -95,6 +93,17 @@ function EditForm(props) {
     });
   };
 
+  const isInputFieldEmpty = () => {
+    return (
+      employee.name === '' ||
+      employee.profession === '' ||
+      employee.color === '' ||
+      employee.city === '' ||
+      employee.branch === '' ||
+      employee.assigned === null
+    );
+  };
+
   const onClickSubmit = () => {
     setEmployee({
       ...employee,
@@ -114,8 +123,8 @@ function EditForm(props) {
         <Row className="justify-content-md-center">
           <Col xs={12} sm={9}>
             <H6>
-              Please change information to update the details and click the
-              submit button to complete.
+              Please change the information below to update employee
+              details then click the submit button.
             </H6>
           </Col>
         </Row>
@@ -125,7 +134,7 @@ function EditForm(props) {
               <StyledCardHeader>Edit Employee</StyledCardHeader>
               <Card.Body>
                 <Form>
-                  <Form.Group controlId="formName">
+                  <Form.Group controlId="editName">
                     <Form.Label>Name</Form.Label>
                     <Form.Control
                       required
@@ -135,7 +144,7 @@ function EditForm(props) {
                       onChange={onChangeName}
                     />
                   </Form.Group>
-                  <Form.Group controlId="formProfession">
+                  <Form.Group controlId="editProfession">
                     <Form.Label>Profession</Form.Label>
                     <Form.Control
                       required
@@ -145,7 +154,7 @@ function EditForm(props) {
                       onChange={onChangeProfession}
                     />
                   </Form.Group>
-                  <Form.Group controlId="formColor">
+                  <Form.Group controlId="editColor">
                     <Form.Label>Color</Form.Label>
                     <Form.Control
                       required
@@ -159,7 +168,7 @@ function EditForm(props) {
                       ))}
                     </Form.Control>
                   </Form.Group>
-                  <Form.Group controlId="formCity">
+                  <Form.Group controlId="editCity">
                     <Form.Label>City</Form.Label>
                     <Form.Control
                       required
@@ -173,7 +182,7 @@ function EditForm(props) {
                       ))}
                     </Form.Control>
                   </Form.Group>
-                  <Form.Group controlId="formBranch">
+                  <Form.Group controlId="editBranch">
                     <Form.Label>Branch</Form.Label>
                     <Form.Control
                       required
@@ -194,7 +203,11 @@ function EditForm(props) {
                   >
                     Cancel
                   </Button>
-                  <StyledButton size="sm" onClick={() => onClickSubmit()}>
+                  <StyledButton
+                    size="sm"
+                    onClick={() => onClickSubmit()}
+                    disabled={isInputFieldEmpty()}
+                  >
                     Submit
                   </StyledButton>
                 </Form>

@@ -3,7 +3,6 @@
 /* eslint-disable react/destructuring-assignment */
 /* eslint-disable react/no-access-state-in-setstate */
 /* eslint-disable react/state-in-constructor */
-/* eslint-disable react/no-unused-state */
 import React from 'react';
 import { Row, Col, Container, Button } from 'react-bootstrap';
 import styled from 'styled-components';
@@ -18,7 +17,6 @@ class UserDashboard extends React.Component {
     employees: [],
     filterValue: '',
     filterEmployees: [],
-    errorMessage: '',
   };
 
   componentDidMount = () => {
