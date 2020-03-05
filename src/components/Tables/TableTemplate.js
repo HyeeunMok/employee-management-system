@@ -23,8 +23,8 @@ const TableTemplate = ({
           { Header: 'Branch', accessor: 'branch' },
           { Header: 'Assigned', accessor: 'assigned', show: false },
           {
-            Header: '',
-            id: 'options',
+            Header: 'Actions',
+            id: 'actions',
             width: 140,
             Cell: ({ row }) => {
               return (
