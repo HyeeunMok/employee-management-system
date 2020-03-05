@@ -11,20 +11,20 @@ I created an online employee management system web application that will allow u
 
 ## Functionalities:
 
-**1. Add employee information:**
+**1. Add employee information:** <br />
 &nbsp; &nbsp; * Name <br />
 &nbsp; &nbsp; * Profession <br />
 &nbsp; &nbsp; * Color <br />
 &nbsp; &nbsp; * City <br />
 &nbsp; &nbsp; * Branch <br />
 
-**2. Edit and Delete:**
+**2. Edit and Delete:** <br />
  Be able to edit and delete employees from the database. An employee's details are automatically populated when the user clicks the edit button
 
-**3. Search:**
+**3. Search:** <br />
  Be able to search (an) employee(s) by their first name, last name, and full name
 
-**4. Display employees:**
+**4. Display employees:** <br />
  Be able to retrieve employees from a REST API and display them
 
 ## Used technologies:
@@ -33,7 +33,7 @@ I created an online employee management system web application that will allow u
 &nbsp; &nbsp; * Express <br />
 &nbsp; &nbsp; * SQLite <br />
 &nbsp; &nbsp; * REST API <br />
-&nbsp; &nbsp; * React Table <br />
+&nbsp; &nbsp; * React-Table <br />
 &nbsp; &nbsp; * React-Bootstrap <br />
 &nbsp; &nbsp; * Axios <br />
 &nbsp; &nbsp; * Cors <br />
