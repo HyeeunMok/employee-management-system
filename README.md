@@ -26,6 +26,9 @@ I created an online employee management system web application that will allow u
 
 **4. Display employees:** <br />
  Be able to retrieve employees from a REST API and display them
+ 
+**5. REST API:** <br /> 
+  Built REST API using node.js and Express to implement above functionalities
 
 ## Used technologies:
 &nbsp; &nbsp; * React <br />
