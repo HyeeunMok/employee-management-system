@@ -52,8 +52,8 @@ class UserDashboard extends React.Component {
 
   render() {
     const { employees, filterValue, filterEmployees } = this.state;
-    const filteredEmployees =
-      filterValue === '' ? employees : filterEmployees;
+    const filteredEmployees = !filterValue ? employees : filterEmployees;
+    // filterValue === '' ? employees : filterEmployees;
 
     return (
       <div>
