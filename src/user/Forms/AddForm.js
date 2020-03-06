@@ -85,10 +85,6 @@ function AddForm() {
   };
 
   const handleSubmit = () => {
-    setEmployee({
-      ...employee,
-    });
-
     axios.post(addUrl, employee).then(res => {
       console.log(res.data.data);
       closeForm();

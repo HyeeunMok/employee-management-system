@@ -105,12 +105,6 @@ function EditForm(props) {
   };
 
   const onClickSubmit = () => {
-    setEmployee({
-      ...employee,
-    });
-    console.log(employee);
-
-    // Update an edited data of employee
     axios
       .patch(`${editUrl}/${props.match.params.id}`, employee)
       .then(response => console.log(response.data.data));
