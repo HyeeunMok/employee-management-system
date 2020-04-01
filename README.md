@@ -1,4 +1,4 @@
-# Employee Management System (Plexxis Interview Exercise)
+# Employee Management System
 
 ![ERP](ERP.gif)
 
