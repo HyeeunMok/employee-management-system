@@ -5,7 +5,7 @@
   "license": "None provided",
   "private": true,
   "dependencies": {
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "body-parser": "^1.19.0",
     "concurrently": "^3.6.0",
     "cors": "^2.8.5",
